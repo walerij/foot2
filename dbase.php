@@ -3,11 +3,14 @@ class db
 {
     
         var $sql;
+        var $sql_etalon;
         
     
-        public function __construct() 
+        //конструктор - эталон
+        public function __construct($database="footbase") 
         {
-            $this->sql=mysqli_connect("localhost","formulist","qwas","footbase");
+            $this->sql=mysqli_connect("localhost","formulist","qwas", $database);
+            $this->sql_etalon=mysqli_connect("localhost","formulist","qwas", "footbase_etalon");
       
         }
     
@@ -50,6 +53,15 @@ class db
             
             return $tmp_table;
         }
+    
+      //сверка результата с эталоном
+       public function check(){
+           $res=mysqli_query($this->sql, $sql_text);
+           $res_check=mysqli_query($this->sql_etalon, $sql_text);
+           $result_check = array_diff($res, $res_check);
+           return $result_check;
+           
+       }
 
     
 }
