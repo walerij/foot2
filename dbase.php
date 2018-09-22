@@ -54,6 +54,6 @@ class db
     
 }
 
-$database = new db();
-$foot_res = $database->foot_query("SELECT * FROM player LIMIT 5");
-echo $database->get_table($foot_res);
+//$database = new db();
+//$foot_res = $database->foot_query("SELECT * FROM game");
+//echo $database->get_table($foot_res);

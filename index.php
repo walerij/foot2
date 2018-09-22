@@ -1,11 +1,6 @@
 <h2>Футбол</h2>
 <?php 
-  if(isset($_POST["footsqlsubmit"]))
-  {
-      $footrequest=htmlspecialchars($_POST["footsql"]);
-      echo "<pre>".$footrequest."</pre>";
-  }
-
+    require_once "dbase.php";
 ?>
 
 
@@ -22,3 +17,29 @@
         </button>
     </div>
 </form>
+<?php 
+ if(isset($_POST["footsqlsubmit"]))
+  {
+      $footrequest=htmlspecialchars($_POST["footsql"]);
+      $tmp_view="";
+     
+      try{
+          $database = new db();
+          $foot_res = $database->foot_query($footrequest);
+          $tmp_view .= $database->get_table($foot_res);
+          
+      }
+     
+      catch(Exception $e)
+      {
+          $tmp_view.=$e->getMessage() ;
+      }
+      finally
+      {
+        echo "<pre>".$footrequest."<br>".$tmp_view ."</pre>";     
+      }
+      
+      
+  }
+
+?>
