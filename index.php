@@ -3,7 +3,9 @@
     require_once "dbase.php";
 ?>
 
-
+<head>
+    <meta charset="utf-8">
+</head>
 <form name="foot" action="index.php" method="post">
     <div>Поле ввода команды</div>
     <div>
